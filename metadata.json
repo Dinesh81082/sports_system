@@ -1,0 +1,8 @@
+{
+  "name": "Sports Athlete Management",
+  "description": "Comprehensive sports and athlete management system for tracking teams, coaches, players, matches, and game scores.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
