@@ -8,41 +8,45 @@ A full-stack web app built with **Vite + React**, **Node.js / Express**, and **M
 
 ```
 sports-athlete-mgmt/
-├── config/
-│   ├── db.js          ← MongoDB (Mongoose) connection & Data Service
-│   └── schema.sql     ← Original SQL schema reference
-├── models/
-│   ├── Team.js        ← Mongoose Team Schema
-│   ├── Player.js      ← Mongoose Player Schema
-│   ├── Coach.js       ← Mongoose Coach Schema
-│   ├── Match.js       ← Mongoose Match Schema
-│   └── Score.js       ← Mongoose Score Schema
-├── routes/
-│   ├── teams.js
-│   ├── players.js
-│   ├── coaches.js
-│   ├── matches.js
-│   └── scores.js
-├── src/
-│   ├── components/
-│   │   ├── Sidebar.jsx
-│   │   └── Modal.jsx
-│   ├── pages/
-│   │   ├── Dashboard.jsx
-│   │   ├── Teams.jsx
-│   │   ├── Players.jsx
-│   │   ├── Coaches.jsx
-│   │   ├── Matches.jsx
-│   │   └── Scores.jsx
-│   ├── services/
-│   │   └── api.js
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── server.js
-├── index.html
-├── vite.config.js
-└── package.json
+├── backend/
+│   ├── config/
+│   │   ├── db.js          ← MongoDB (Mongoose) connection & Data Service
+│   │   └── schema.sql     ← Original SQL schema reference
+│   ├── models/
+│   │   ├── Team.js        ← Mongoose Team Schema
+│   │   ├── Player.js      ← Mongoose Player Schema
+│   │   ├── Coach.js       ← Mongoose Coach Schema
+│   │   ├── Match.js       ← Mongoose Match Schema
+│   │   └── Score.js       ← Mongoose Score Schema
+│   ├── routes/
+│   │   ├── teams.js
+│   │   ├── players.js
+│   │   ├── coaches.js
+│   │   ├── matches.js
+│   │   └── scores.js
+│   ├── package.json
+│   └── server.js          ← Express server & API routes
+│
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   ├── Sidebar.jsx
+    │   │   └── Modal.jsx
+    │   ├── pages/
+    │   │   ├── Dashboard.jsx
+    │   │   ├── Teams.jsx
+    │   │   ├── Players.jsx
+    │   │   ├── Coaches.jsx
+    │   │   ├── Matches.jsx
+    │   │   └── Scores.jsx
+    │   ├── services/
+    │   │   └── api.js
+    │   ├── App.jsx
+    │   ├── main.jsx
+    │   └── index.css
+    ├── index.html
+    ├── vite.config.js
+    └── package.json
 ```
 
 ---

@@ -11,6 +11,8 @@ import { dbService } from './config/db.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+const frontendDir = path.resolve(rootDir, 'frontend');
 
 const app = express();
 
@@ -29,6 +31,7 @@ app.get('/api/health', (_req, res) => {
     status: 'ok',
     database: 'MongoDB (Mongoose)',
     connected: dbService.isOnline(),
+    storage: dbService.isOnline() ? 'Remote MongoDB Cluster' : 'In-Memory MongoDB Store',
     message: '⚽ Sports Management API is running!'
   });
 });
@@ -37,15 +40,20 @@ app.get('/api/health', (_req, res) => {
 if (process.env.NODE_ENV !== 'production') {
   const { createServer: createViteServer } = await import('vite');
   const vite = await createViteServer({
+    root: frontendDir,
+    configFile: path.resolve(frontendDir, 'vite.config.js'),
     server: { middlewareMode: true, host: '0.0.0.0' },
     appType: 'spa',
   });
   app.use(vite.middlewares);
 } else {
-  const distPath = path.join(__dirname, 'dist');
-  app.use(express.static(distPath));
-  app.get('*', (_req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
+  import('fs').then(({ default: fs }) => {
+    const rootDist = path.join(rootDir, 'dist');
+    const distPath = fs.existsSync(rootDist) ? rootDist : path.join(frontendDir, 'dist');
+    app.use(express.static(distPath));
+    app.get('*', (_req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
   });
 }
 
@@ -53,3 +61,5 @@ const PORT = 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Sports Management Server running on http://0.0.0.0:${PORT}`);
 });
+
+export default app;
